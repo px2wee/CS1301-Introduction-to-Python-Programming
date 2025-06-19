@@ -20,7 +20,7 @@
 def fancy_find(search_within, search_for):
     index = search_within.find(search_for)
     if index < 0:
-        return search_for + " was not found within " + search_within
+        return search_for + " was not found within " + search_within + "!"
     else:
         return search_for + " found at index " + str(index) + "!"
 
