@@ -1,0 +1,10 @@
+def add_grade(gradebook, student_name, new_grade):
+    if student_name not in gradebook:
+        gradebook[student_name] = []
+    gradebook[student_name].append(new_grade)
+    return gradebook
+
+gradebook1 = {"David":[20, 19, 18, 20, 19]}
+student_name1 = "Mary"
+new_grade1 = 21
+print(add_grade(gradebook1, student_name1, new_grade1))
