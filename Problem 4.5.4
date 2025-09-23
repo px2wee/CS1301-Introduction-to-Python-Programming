@@ -1,0 +1,11 @@
+gradebook = [{"name": "David", "homework": 33, "test": 33, "exam": 33}]
+new_student = {"name": "Samantha", "homework": 95, "test": 92, "exam": 100}
+gradebook.append(new_student)
+print(gradebook)
+print(gradebook[0])
+gradebook[0]["exam"] = 100
+print(gradebook)
+
+new_gradebook = {}
+new_gradebook[gradebook[0]["name"]] = gradebook
+print(new_gradebook)
