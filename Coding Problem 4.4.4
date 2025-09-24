@@ -34,17 +34,25 @@
 #Add your function here!
 def st_dev(filename):
     file = open(filename, "r")
-    mean_total = 0
-    mean_count = 0
-    sqr_diff_total = 0
-    for line in file:
-        mean_total += int(line)
-        mean_count += 1
-        mean = mean_total / mean_count
-        sqr_diff = (int(line) - mean)**2
-        sqr_diff_total += sqr_diff
 
-    return (sqr_diff_total / mean_count)**0.5
+    #Calculate mean   
+    number_list = []    
+    for number in file:
+        number_list.append(int(number))
+
+    mean = (sum(number_list) / len(number_list))
+
+    #Calculate total squared difference
+    sqr_diff_total = 0    
+    for number in number_list:
+        sqr_diff = (int(number) - mean)**2
+        sqr_diff_total += sqr_diff
+        
+    #Calculate stdev
+    stdev = (sqr_diff_total / len(number_list))**0.5
+    
+    file.close()
+    return stdev
 
 
 #Below are some lines of code that will test your function.
