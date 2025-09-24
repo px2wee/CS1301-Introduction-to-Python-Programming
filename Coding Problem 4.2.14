@@ -30,9 +30,12 @@
 
 #Write your function here!
 def steps(num):
-    for i in range(0, num):
-        print("\t"*i + str(i+1) * 3)
+    output = ""
+    for i in range(num):
+        result = str("\t")*i + str(i+1)*3 + "\n"
+        output += result
         i += 1
+    return output
 
 
 #The following two lines will test your code, but are not
