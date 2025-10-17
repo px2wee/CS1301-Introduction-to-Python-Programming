@@ -65,6 +65,19 @@ def to_dictionaries(mylist):
     
     return new_dictionary
 
+#def to_dictionaries(mylist):
+#    new_dictionary = {}
+#    for nation in mylist:
+#        info_dict = {
+#            "long_name": nation.long_name, 
+#            "iso_code": nation.iso_code, 
+#            "iso_short": nation.iso_short, 
+#            "iso_long": nation.iso_long, 
+#            "capital": nation.capital
+#        }
+#        new_dictionary[nation.short_name] = info_dict
+#    
+#    return new_dictionary
 
 #Below are some lines of code that will test your function.
 #You can change the value of the variable(s) to test your
