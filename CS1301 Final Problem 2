@@ -61,6 +61,21 @@ def generate_name(filename, name):
     
     return new_name
 
+def generate_name(filename, name):
+    with open(filename, "r") as file:
+        lines = [line.strip() for line in file.readlines()]
+        
+    first, last = name.split()
+    first_initial = first[0]
+    last_initial = last[0]
+    
+    first_index = ord(first_initial) - ord("A")
+    last_index = ord(last_initial) - ord("A")
+    
+    first_part = lines[first_index]
+    last_part = lines[last_index + 26]
+    
+    return f"{first_part} {last_part}"
 
 #Below are some lines of code that will test your function.
 #You can change the value of the variable(s) to test your
