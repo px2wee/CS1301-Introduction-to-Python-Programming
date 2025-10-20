@@ -71,6 +71,26 @@ def all_time_record(opponent):
     return f"{won}-{lost}-{tie}"
     record_file.close()
 
+#chatgpt solution:
+    won = 0
+    lost = 0
+    tie = 0
+    lines = record_file.readlines()[1:] 
+    for line in lines:
+        row = line.strip().split(",")
+        against_team = row[1]
+        pf = int(row[3])
+        pa = int(row[4])
+        if against_team == opponent:        
+            if pf > pa:
+                won += 1
+            elif pf < pa:
+                lost += 1
+            elif pa == pf:
+                tie += 1        
+    return f"{won}-{lost}-{tie}"
+
+
 #Below are some lines of code that will test your function.
 #You can change the value of the variable(s) to test your
 #function with different inputs.
