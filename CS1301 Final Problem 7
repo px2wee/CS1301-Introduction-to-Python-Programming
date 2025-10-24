@@ -1,0 +1,93 @@
+#Last problem, you wrote a function that generated the all-
+#time win-loss-tie record for Georgia Tech against any other
+#team.
+#
+#That dataset had a lot of other information in it. Let's
+#use it to answer some more questions. As a reminder, the
+#data will be a CSV file, meaning that each line will be a
+#comma-separated list of values. Each line will describe one
+#game.
+#
+#The columns, from left-to-right, are:
+#
+# - Date: the date of the game, in Year-Month-Day format.
+# - Opponent: the name of the opposing team
+# - Location: Home, Away, or Neutral
+# - Points For: Points scored by Georgia Tech
+# - Points Against: Points scored by the opponent
+
+#Date,Opponent,Location,Points For,Points Against
+#2016-12-31,Kentucky,Neutral,33,18
+#2016-11-26,Georgia,Away,28,27
+
+#This line will open the file:
+record_file = open('../resource/lib/public/georgia_tech_football.csv', 'r')
+
+Question 1
+lines = record_file.readlines()[1:] 
+e_year = 2016
+e_month = 12
+e_day = 31
+team = ""
+for line in lines:
+    row = line.strip().split(",")
+    date, against_team, location, pf, pa = row
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+    if year < e_year:
+        team = against_team
+        e_year = year
+        e_month = month
+        e_day = day
+    elif year == e_year and month < e_month:
+        team = against_team
+        e_year = year
+        e_month = month
+        e_day = day
+    elif year == e_year and month == e_month and day < e_day:
+        team = against_team
+        e_year = year
+        e_month = month
+        e_day = day
+    else:
+        pass
+    
+print(team)
+    
+
+Question 2 and 3
+def all_time_record(opponent):   
+    record_file = open('../resource/lib/public/georgia_tech_football.csv', 'r')
+
+
+#Here, add any code you want to allow you to answer the
+#questions asked below over on edX. This is just a sandbox
+#for you to explore the dataset: nothing is required for
+#submission here.
+
+    won = 0
+    lost = 0
+    tie = 0
+    points_for = 0
+    points_against = 0
+    lines = record_file.readlines()[1:] 
+    for line in lines:
+        row = line.strip().split(",")
+        against_team = row[1]
+        pf = int(row[3])
+        pa = int(row[4])
+        points_for += pf
+        points_against += pa
+        if against_team == opponent:        
+            if pf > pa:
+                won += 1
+            elif pf < pa:
+                lost += 1
+            elif pa == pf:
+                tie += 1        
+    return f"{won}-{lost}-{tie}-{points_for}-{points_against}"
+
+print(all_time_record("Auburn"))
+
+
