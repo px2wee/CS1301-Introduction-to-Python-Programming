@@ -77,9 +77,10 @@ def all_time_record(opponent):
         against_team = row[1]
         pf = int(row[3])
         pa = int(row[4])
-        points_for += pf
-        points_against += pa
+
         if against_team == opponent:        
+            points_for += pf
+            points_against += pa
             if pf > pa:
                 won += 1
             elif pf < pa:
@@ -89,5 +90,120 @@ def all_time_record(opponent):
     return f"{won}-{lost}-{tie}-{points_for}-{points_against}"
 
 print(all_time_record("Auburn"))
+
+Question 4: 
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])    
+    
+    if location == "Home":        
+        points_for += pf
+        points_against += pa
+        if pf > pa:
+           won += 1
+        elif pf < pa:
+            lost += 1
+        elif pa == pf:
+            tie += 1        
+print(won, lost, tie)
+
+Question 5: 
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+    
+    if year == 2009:        
+        points_for += pf
+        points_against += pa
+        if pf > pa:
+           won += 1
+        elif pf < pa:
+            lost += 1
+        elif pa == pf:
+            tie += 1        
+print(won, "-", lost, "-", tie)
+
+Question 6: 
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+    
+    if month == 10:        
+        points_for += pf
+        points_against += pa
+        if pf > pa:
+           won += 1
+        elif pf < pa:
+            lost += 1
+        elif pa == pf:
+            tie += 1        
+print(won, "-", lost, "-", tie)
+
+Question 7: 
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+    
+    if year >= 1933 and year <= 1963 :        
+        points_for += pf
+        points_against += pa
+        if pf > pa:
+           won += 1
+        elif pf < pa:
+            lost += 1
+        elif pa == pf:
+            tie += 1        
+print(won, "-", lost, "-", tie)
+
+
 
 
