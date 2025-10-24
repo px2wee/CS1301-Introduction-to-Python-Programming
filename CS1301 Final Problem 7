@@ -204,6 +204,136 @@ for line in lines:
             tie += 1        
 print(won, "-", lost, "-", tie)
 
+Question 8:
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+team = ""
+dictionary = {}
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+      
+    if against_team not in dictionary:
+        dictionary[against_team] = pf
+    else:
+        dictionary[against_team] += pf
+        
+    for team, score in dictionary.items():
+        highest_team = max(dictionary, key = dictionary.get)
+    
+print(highest_team)
+
+Question 9: 
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+team = ""
+dictionary = {}
+lowest_list = []
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+      
+    if against_team not in dictionary:
+        dictionary[against_team] = pf
+    else:
+        dictionary[against_team] += pf
+        
+    for team, score in dictionary.items():
+        if score == 0:
+            lowest_list.append(team)  
+    
+print(lowest_list)
+
+Question 10: 
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+team = ""
+dictionary = {}
+lowest_list = []
+zero_list = []
+count = 0
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])
+    pd = pf - pa
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+    data_list = [pd, count]
+      
+    if against_team not in dictionary:
+        dictionary[against_team] = pa
+    else:
+        dictionary[against_team] += pa
+        
+for team, score in dictionary.items():
+    if score == 0:
+        zero_list.append(team)
+        count += 1
+    
+    
+print(count)
 
 
+Question 11: 
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+team = ""
+dictionary = {}
+lowest_list = []
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])
+    pd = pf - pa
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+      
+    if against_team not in dictionary:
+        dictionary[against_team] = pd
+    else:
+        dictionary[against_team] += pd
+        
+    for team, score in dictionary.items():
+        highest_team = max(dictionary, key = dictionary.get)
+    
+print(highest_team)
 
