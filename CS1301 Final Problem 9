@@ -160,3 +160,113 @@ for line in lines:
         highest_def_name = name
         
 print(highest_def_name)
+
+Question 5: 
+lines = pokedex.readlines()[1:]
+count = 0
+highest_def = 0
+highest_def_name = ""
+most_type_count = 0
+most_type_dict = {}
+dictionary = {}
+lowest_stats = 1000000
+lowest_stats_name = ""
+most_num = 0
+most_type = ""
+
+for line in lines:
+    row = line.strip().split(",")
+    num = int(row[0])
+    name = row[1]
+    type1 = row[2]
+    type2 = row[3]
+    hp = int(row[4])
+    attack = int(row[5])
+    defense = int(row[6])
+    specialatk = int(row[7])
+    specialdef = int(row[8])
+    speed = int(row[9])
+    gen = int(row[10])
+    legendary = row[11]
+    mega = row[12]
+    stats = hp + attack + defense + specialatk + specialdef + speed
+    
+    if legendary == "FALSE":
+        legendary = False
+    elif legendary == "TRUE":
+        legendary = True
+    if mega == "FALSE":
+        mega = False
+    elif mega == "TRUE":
+        mega = True
+
+
+    if legendary == True and type1 not in most_type_dict:
+        most_type_dict[type1] = most_type_count
+    elif legendary == True:
+        most_type_dict[type1] += 1  
+    
+    if legendary == True and type2 not in most_type_dict:
+        most_type_dict[type2] = most_type_count
+    elif legendary == True:
+        most_type_dict[type2] += 1
+        
+for ptype, num in most_type_dict.items():
+    if ptype == "":
+        pass
+    elif num > most_num:
+        most_num = num
+        most_type = ptype
+    
+print(most_num)        
+print(most_type)
+
+Question 6: 
+lines = pokedex.readlines()[1:]
+count = 0
+highest_def = 0
+highest_def_name = ""
+most_type_count = 0
+most_type_name = ""
+most_type_dict = {}
+dictionary = {}
+lowest_stats = 1000000
+lowest_stats_name = ""
+
+for line in lines:
+    row = line.strip().split(",")
+    num = int(row[0])
+    name = row[1]
+    type1 = row[2]
+    type2 = row[3]
+    hp = int(row[4])
+    attack = int(row[5])
+    defense = int(row[6])
+    specialatk = int(row[7])
+    specialdef = int(row[8])
+    speed = int(row[9])
+    gen = int(row[10])
+    legendary = row[11]
+    mega = row[12]
+    stats = hp + attack + defense + specialatk + specialdef + speed
+    
+    if legendary == "FALSE":
+        legendary = False
+    elif legendary == "TRUE":
+        legendary = True
+    if mega == "FALSE":
+        mega = False
+    elif mega == "TRUE":
+        mega = True
+
+    if legendary == True:
+        dictionary[name] = stats
+
+for name, stats in dictionary.items():
+    if stats < lowest_stats:
+        lowest_stats = stats
+        lowest_stats_name = name
+            
+print(lowest_stats_name)
+
+
