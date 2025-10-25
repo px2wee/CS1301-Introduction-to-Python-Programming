@@ -65,4 +65,98 @@ for line in lines:
         count +=1
 print(count)
 
+Question 2: 
+for line in lines:
+    row = line.strip().split(",")
+    num = int(row[0])
+    name = row[1]
+    type1 = row[2]
+    type2 = row[3]
+    hp = int(row[4])
+    attack = int(row[5])
+    defense = int(row[6])
+    specialatk = int(row[7])
+    specialdef = int(row[8])
+    speed = int(row[9])
+    gen = int(row[10])
+    legendary = row[11]
+    mega = row[12]
+    
+    if type1 not in most_type_dict:
+        most_type_dict[type1] = most_type_count
+    else:
+        most_type_dict[type1] += 1  
+    
+    if type2 not in most_type_dict:
+        most_type_dict[type2] = most_type_count
+    else:
+        most_type_dict[type2] += 1
+        
+print(most_type_dict)
 
+Question 3: 
+lines = pokedex.readlines()[1:]
+count = 0
+highest_hp = 0
+highest_hp_name = ""
+for line in lines:
+    row = line.strip().split(",")
+    num = int(row[0])
+    name = row[1]
+    type1 = row[2]
+    type2 = row[3]
+    hp = int(row[4])
+    attack = int(row[5])
+    defense = int(row[6])
+    specialatk = int(row[7])
+    specialdef = int(row[8])
+    speed = int(row[9])
+    gen = int(row[10])
+    legendary = row[11]
+    mega = row[12]
+    
+    if hp > highest_hp:
+        highest_hp = hp
+        highest_hp_name = name
+        
+print(highest_hp_name)
+
+Question 4: 
+lines = pokedex.readlines()[1:]
+count = 0
+highest_def = 0
+highest_def_name = ""
+most_type_count = 0
+most_type_name = ""
+most_type_dict = {}
+
+for line in lines:
+    row = line.strip().split(",")
+    num = int(row[0])
+    name = row[1]
+    type1 = row[2]
+    type2 = row[3]
+    hp = int(row[4])
+    attack = int(row[5])
+    defense = int(row[6])
+    specialatk = int(row[7])
+    specialdef = int(row[8])
+    speed = int(row[9])
+    gen = int(row[10])
+    legendary = row[11]
+    mega = row[12]
+    
+    if legendary == "FALSE":
+        legendary = False
+    elif legendary == "TRUE":
+        legednary = True
+    if mega == "FALSE":
+        mega = False
+    elif mega == "TRUE":
+        mega = True
+    
+    if legendary == False and mega == False and defense > highest_def:
+        highest_def = defense
+        highest_def_name = name
+        
+print(highest_def_name)
