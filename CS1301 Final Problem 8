@@ -59,8 +59,116 @@ for line in lines:
 print(count, " ", total_birth)  
 
 Question 4: 
+lines = names_file.readlines()
+count = 0
+highest_name = ""
+total_birth = 0
+for line in lines:
+    row = line.strip().split(",")
+    name = row[0]
+    birth = int(row[1])
+    gender = row[2]
+    total_birth += birth
+    if name[0] == "Q" and gender == "Girl" and birth > count:
+        count = birth
+        highest_name = name
+        
 
+print(count, " ", highest_name)  
 
+Question 5: 
+lines = names_file.readlines()
+count = 0
+highest_name = ""
+total_birth = 0
+for line in lines:
+    row = line.strip().split(",")
+    name = row[0]
+    birth = int(row[1])
+    gender = row[2]
+    total_birth += birth
+    if name[0] in "AEIOU" and name[-1] in "aeiou":
+        count += birth
+        
+
+print(count)   
+
+Question 6, 7, 8, 9: 
+for line in lines:
+    row = line.strip().split(",")
+    name = row[0]
+    birth = int(row[1])
+    gender = row[2]
+    first_letter = name[0]
+    
+    if first_letter not in name_dict: 
+        name_dict[first_letter] = birth
+    else: 
+        name_dict[first_letter] += birth
+
+    for letter, birthcount in name_dict.items():
+        lowest_letter = min(name_dict, key = name_dict.get)
+        highest_letter = max(name_dict, key = name_dict.get)
+        
+print(lowest_letter, name_dict["U"]) 
+print(highest_letter, name_dict["A"])    
+
+Question 10 and 11: 
+lines = names_file.readlines()
+count = 0
+highest_name = ""
+total_birth = 0
+name_dict = {}
+for line in lines:
+    row = line.strip().split(",")
+    name = row[0]
+    birth = int(row[1])
+    gender = row[2]
+    first_letter = name[0]
+    
+    if name not in name_dict: 
+        name_dict[name] = birth
+    else: 
+        name_dict[name] += birth
+    
+    highest_name = max(name_dict, key=name_dict.get)
+ 
+print(highest_name, name_dict["Isabella"])  
+
+Question 12:
+lines = names_file.readlines()
+count = 0
+highest_name = ""
+total_birth = 0
+name_dict = {}
+b_name_dict = {}
+g_name_dict = {}
+for line in lines:
+    row = line.strip().split(",")
+    name = row[0]
+    birth = int(row[1])
+    gender = row[2]
+    first_letter = name[0]
+    
+    if gender == "Boy" and name not in name_dict: 
+        b_name_dict[name] = birth
+    elif gender == "Girl" and name not in name_dict: 
+        g_name_dict[name] = birth
+    elif gender == "Boy":
+        b_name_dict[name] += birth
+    elif gender == "Girl": 
+        g_name_dict[name] += birth
+    
+    lowest_diff_name = ""
+    lowest_diff = 1000000
+    for name in b_name_dict:
+        if name in g_name_dict:
+            diff = abs(b_name_dict[name] - g_name_dict[name])
+            if diff < lowest_diff:
+                lowest_diff_name = name
+                lowest_diff = diff
+
+print(lowest_diff_name, lowest_diff)
 
 #Here, add any code you want to allow you to answer the
 #questions asked below over on edX. This is just a sandbox
