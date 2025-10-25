@@ -337,3 +337,49 @@ for line in lines:
     
 print(highest_team)
 
+Question 12: 
+won = 0
+lost = 0
+tie = 0
+points_for = 0
+points_against = 0
+team = ""
+dictionary = {}
+count_dict = {}
+apd_dict = {}
+lowest_list = []
+zero_list = []
+count = 1
+lines = record_file.readlines()[1:] 
+for line in lines:
+    row = line.strip().split(",")
+    date = row[0]
+    against_team = row[1]
+    location = row[2]
+    pf = int(row[3])
+    pa = int(row[4])
+    pd = pf - pa
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:10])
+    data_list = [pd, count]
+      
+    if against_team not in dictionary:
+        dictionary[against_team] = pd
+        count_dict[against_team] = count
+    else:
+        dictionary[against_team] += pd
+        count_dict[against_team] += 1
+        
+    for team, quantity in count_dict.items():
+        if quantity >= 5: 
+            apd = dictionary[team] / count_dict[team]
+            apd_dict[team] = apd
+        else:
+            pass
+    
+    for team, score in apd_dict.items():
+        highest_team = max(apd_dict, key = apd_dict.get)
+        
+
+print(highest_team)
