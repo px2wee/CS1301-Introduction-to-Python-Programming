@@ -374,7 +374,7 @@ for line in lines:
         dictionary[type2] = count
     else:
         speed_dict[type2] += speed
-        dictionary[type1] += 1
+        dictionary[type2] += 1
 
 #print(speed_dict)        
 #print(dictionary)        
