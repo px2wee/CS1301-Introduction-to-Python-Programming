@@ -322,4 +322,73 @@ print(most_num)
 print(most_name)
 
 Question 8:
+lines = pokedex.readlines()[1:]
+count = 0
+highest_def = 0
+highest_def_name = ""
+most_type_count = 0
+most_type_dict = {}
+dictionary = {}
+lowest_stats = 1000000
+lowest_stats_name = ""
+most_num = 0
+most_type = ""
+speed_dict = {}
+ave_speed_dict = {}
 
+for line in lines:
+    row = line.strip().split(",")
+    num = int(row[0])
+    name = row[1]
+    type1 = row[2]
+    type2 = row[3]
+    hp = int(row[4])
+    attack = int(row[5])
+    defense = int(row[6])
+    specialatk = int(row[7])
+    specialdef = int(row[8])
+    speed = int(row[9])
+    gen = int(row[10])
+    legendary = row[11]
+    mega = row[12]
+    stats = hp + attack + defense + specialatk + specialdef + speed
+    
+    if legendary == "FALSE":
+        legendary = False
+    elif legendary == "TRUE":
+        legendary = True
+    if mega == "FALSE":
+        mega = False
+    elif mega == "TRUE":
+        mega = True
+
+    if type1 not in speed_dict:
+        speed_dict[type1] = speed
+        dictionary[type1] = count
+    else:
+        speed_dict[type1] += speed 
+        dictionary[type1] += 1
+    
+    if type2 not in speed_dict:
+        speed_dict[type2] = speed
+        dictionary[type2] = count
+    else:
+        speed_dict[type2] += speed
+        dictionary[type1] += 1
+
+#print(speed_dict)        
+#print(dictionary)        
+        
+for ptype, count in dictionary.items():
+    if ptype == "":
+        pass
+    else:
+        ave_speed = speed_dict[ptype] / dictionary[ptype]
+        ave_speed_dict[ptype] = ave_speed
+    
+for ptype, speed in ave_speed_dict.items():
+    highest_ave_speed = max(ave_speed_dict, key = ave_speed_dict.get)
+
+print(highest_ave_speed)
+
+Question 9:
