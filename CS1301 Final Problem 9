@@ -394,9 +394,9 @@ print(highest_ave_speed)
 Question 9:
 
 
-Question 10: 
+Question 10 and 11: 
 lines = pokedex.readlines()[1:]
-count = 0
+count = 1
 highest_def = 0
 highest_def_name = ""
 most_type_count = 0
