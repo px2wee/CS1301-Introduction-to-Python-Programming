@@ -321,7 +321,7 @@ for name, num in most_dict.items():
 print(most_num)        
 print(most_name)
 
-Question 8:
+Question 8 and 9:
 lines = pokedex.readlines()[1:]
 count = 0
 highest_def = 0
@@ -390,6 +390,7 @@ for ptype, speed in ave_speed_dict.items():
     highest_ave_speed = max(ave_speed_dict, key = ave_speed_dict.get)
 
 print(highest_ave_speed)
+print(ave_speed_dict)
 
 Question 9:
 
@@ -457,3 +458,128 @@ for gen, speed in ave_stat_dict.items():
     
 print(highest_ave_stat)        
 print(ave_stat_dict)
+
+Question 12: 
+lines = pokedex.readlines()[1:]
+count = 0
+highest_def = 0
+highest_def_name = ""
+most_type_count = 0
+most_type_dict = {}
+dictionary = {}
+lowest_stats = 1000000
+lowest_stats_name = ""
+most_num = 0
+most_type = ""
+speed_dict = {}
+ave_speed_dict = {}
+stat_dict = {}
+ave_stat_dict = {}
+p_w_mega = []
+pnum_mega = []
+pnum_xmega = []
+p_stats_mega = []
+p_stats_xmega = []
+
+for line in lines:
+    row = line.strip().split(",")
+    num = int(row[0])
+    name = row[1]
+    type1 = row[2]
+    type2 = row[3]
+    hp = int(row[4])
+    attack = int(row[5])
+    defense = int(row[6])
+    specialatk = int(row[7])
+    specialdef = int(row[8])
+    speed = int(row[9])
+    gen = int(row[10])
+    legendary = row[11]
+    mega = row[12]
+    stats = hp + attack + defense + specialatk + specialdef + speed
+    
+    if legendary == "FALSE":
+        legendary = False
+    elif legendary == "TRUE":
+        legendary = True
+    if mega == "FALSE":
+        mega = False
+    elif mega == "TRUE":
+        mega = True
+
+    if mega == True and num not in p_w_mega:
+        p_w_mega.append(num)
+        count += 1
+
+for line in lines: 
+    row = line.strip().split(",")
+    num = int(row[0])
+    name = row[1]
+    type1 = row[2]
+    type2 = row[3]
+    hp = int(row[4])
+    attack = int(row[5])
+    defense = int(row[6])
+    specialatk = int(row[7])
+    specialdef = int(row[8])
+    speed = int(row[9])
+    gen = int(row[10])
+    legendary = row[11]
+    mega = row[12]
+    stats = hp + attack + defense + specialatk + specialdef + speed
+    
+    if legendary == "FALSE":
+        legendary = False
+    elif legendary == "TRUE":
+        legendary = True
+    if mega == "FALSE":
+        mega = False
+    elif mega == "TRUE":
+        mega = True
+    
+    if num in p_w_mega:
+        if mega:
+            p_stats_mega.append(stats)
+        else:
+            p_stats_xmega.append(stats)    
+        
+ave_stats_mega = sum(p_stats_mega) / len(p_stats_mega) 
+ave_stats_xmega = sum(p_stats_xmega) / len(p_stats_xmega)
+diff = round(ave_stats_mega - ave_stats_xmega, 0)
+
+print(ave_stats_mega)
+print(ave_stats_xmega)
+print(diff)
+
+Question 12 - ChatGPT
+lines = pokedex.readlines()[1:]
+       
+p_w_mega = set()
+p_stats_mega = []
+p_stats_xmega = []
+
+# First pass: find which Pokémon have Mega forms
+for line in lines:
+    num, _, _, _, hp, atk, defense, spatk, spdef, spd, _, legendary, mega = line.strip().split(",")[0:13]
+    num = int(num)
+    mega = (mega == "TRUE")
+    if mega:
+        p_w_mega.add(num)
+
+# Second pass: group Megas vs non-Megas for those Pokémon
+for line in lines:
+    num, name, _, _, hp, atk, defense, spatk, spdef, spd, _, legendary, mega = line.strip().split(",")[0:13]
+    num = int(num)
+    stats = sum(map(int, [hp, atk, defense, spatk, spdef, spd]))
+    mega = (mega == "TRUE")
+    if num in p_w_mega:
+        if mega:
+            p_stats_mega.append(stats)
+        else:
+            p_stats_xmega.append(stats)
+
+ave_stats_mega = sum(p_stats_mega) / len(p_stats_mega)
+ave_stats_xmega = sum(p_stats_xmega) / len(p_stats_xmega)
+diff = round(ave_stats_mega - ave_stats_xmega, 0)
+
+print(diff)
